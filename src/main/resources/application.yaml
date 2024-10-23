@@ -1,0 +1,35 @@
+spring.datasource.url: jdbc:h2:file:./camunda-h2-database
+
+camunda.bpm.admin-user:
+  id: demo
+  password: demo
+
+spring.datasource:
+  url: jdbc:postgresql://aws-0-ap-southeast-1.pooler.supabase.com:5432/postgres
+  username: postgres.uppyuphkrxxhuxwfutgi
+  password: 34N5IZV5pVUAp6yP
+  driver-class-name: org.postgresql.Driver
+  hikari:
+    minimum-idle: 5
+    maximum-pool-size: 15
+
+spring.jpa:
+  hibernate:
+    ddl-auto: update
+  properties:
+    hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+
+camunda.bpm:
+  database:
+    schema-update: true
+  dmn:
+    enabled: true
+    logging:
+      level:
+        root: INFO
+        org.camunda.bpm: DEBUG
+        org.springframework: DEBUG
+        org.hibernate.SQL: DEBUG
+        org.hibernate.type: TRACE
+

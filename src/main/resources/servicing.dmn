@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="servicing" name="servicing" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.26.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.21.0">
+  <decision id="LoanOffer" name="Loan Offer" camunda:historyTimeToLive="1">
+    <informationRequirement id="InformationRequirement_1llherd">
+      <requiredDecision href="#PersonalInformation" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0yni3bl">
+      <requiredDecision href="#CollateralRequirements" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_0o5lvx9">
+      <input id="Input_1" label="Loan Type">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>loanType</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1f03h8k" label="Customer Income">
+        <inputExpression id="LiteralExpression_0p3yswd" typeRef="double">
+          <text>customerIncome</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1nj670u" label="Max Loan Amount">
+        <inputExpression id="LiteralExpression_0f076uu" typeRef="double">
+          <text>maxLoanAmount</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1li4a5j" label="Loan Term">
+        <inputExpression id="LiteralExpression_1db0bnn" typeRef="integer">
+          <text>loanTerm</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0ktcgs1" label="Total Credit Score">
+        <inputExpression id="LiteralExpression_0s8e1j9" typeRef="integer">
+          <text>totalCreditScore</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_13crwl9" label="Collateral">
+        <inputExpression id="LiteralExpression_0d9we9l" typeRef="string">
+          <text>collateral</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Loan Release" name="loanRelease" typeRef="string" />
+      <rule id="DecisionRule_18zwikr">
+        <inputEntry id="UnaryTests_0ijdhhd">
+          <text>"Housing Loan"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1crl5yj">
+          <text>51000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ne5wpf">
+          <text>40000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ouen6v">
+          <text>120</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ngyul4">
+          <text>totalCreditScore</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1a55axw">
+          <text>collateral</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1j21rfs">
+          <text>"Accepted"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0hcq5fc">
+        <inputEntry id="UnaryTests_1jeuvx1">
+          <text>"Housing Loan"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0quurmn">
+          <text>[31000..50000]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0s2fjik">
+          <text>30000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0c80nkc">
+          <text>60</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0jultcp">
+          <text>totalCreditScore</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1nl51c6">
+          <text>collateral</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1azkzq2">
+          <text>"For Review"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1pbbz74">
+        <inputEntry id="UnaryTests_1aj9ff8">
+          <text>"Housing Loan"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0uish4r">
+          <text>&lt; 30000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pj5hu0">
+          <text>20000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1tcpitx">
+          <text>36</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ok4l32">
+          <text>totalCreditScore</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_057dsc2">
+          <text>collateral</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0e4etrv">
+          <text>"Rejected"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1pnb0yt">
+        <inputEntry id="UnaryTests_0oe3mrh">
+          <text>"Auto Loan"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0urg7x7">
+          <text>[30000..50000]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0kx3uft">
+          <text>100000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03fj26j">
+          <text>120</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_16po1lv">
+          <text>totalCreditScore</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1mblfbb">
+          <text>collateral</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0pkjpcu">
+          <text>"Accepted"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_11beej7">
+        <inputEntry id="UnaryTests_1ln2mlv">
+          <text>"Auto Loan"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wpm2uc">
+          <text>&gt; 51000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06bfv2u">
+          <text>50000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1l8twea">
+          <text>60</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_05eup88">
+          <text>totalCreditScore</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ktxyjm">
+          <text>collateral</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1a44wqy">
+          <text>"Rejected"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0kc8caz">
+        <inputEntry id="UnaryTests_0u0v7yj">
+          <text>"Business Loan"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1toacqn">
+          <text>&gt; 50000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_08vf42q">
+          <text>100000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ngmqj7">
+          <text>120</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1oo8vab">
+          <text>totalCreditScore</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0lmk700">
+          <text>collateral</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0rq4qrw">
+          <text>"Accepted"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1acxr0o">
+        <inputEntry id="UnaryTests_1dn2dp9">
+          <text>"Business Loan"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pe4070">
+          <text>&lt; 30000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1lu5txh">
+          <text>50000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_086lfmv">
+          <text>60</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0reyaov">
+          <text>totalCreditScore</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1x6jfpm">
+          <text>collateral</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0cf5q0d">
+          <text>"Rejected"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_16764dr">
+        <inputEntry id="UnaryTests_1og67op">
+          <text>"Personal Loan"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1wj9xbo">
+          <text>100000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ai69q3">
+          <text>500000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0i7uj57">
+          <text>60</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0xc1qwn">
+          <text>totalCreditScore</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1re0b7o">
+          <text>collateral</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0b3drts">
+          <text>"Accepted"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ona9ht">
+        <inputEntry id="UnaryTests_09yxah9">
+          <text>"Personal Loan"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ppkskr">
+          <text>&lt; 20000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pnitsi">
+          <text>10000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_037t388">
+          <text>36</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_15ffppm">
+          <text>totalCreditScore</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_09q7835">
+          <text>collateral</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0126llf">
+          <text>"Rejected"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1hm44fc">
+        <inputEntry id="UnaryTests_0kbk72y">
+          <text>"Salary Loan"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0rxma67">
+          <text>&gt; 20000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ds8tj3">
+          <text>40000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0uf16wg">
+          <text>48</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wzcwcy">
+          <text>totalCreditScore</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_091myik">
+          <text>collateral</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1bwvbpb">
+          <text>"For Review"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1mqg74n">
+        <inputEntry id="UnaryTests_12b1yb6">
+          <text>"Government Loan"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_126orki">
+          <text>&gt; 50000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1pvnz1r">
+          <text>50000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0barxdb">
+          <text>60</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ujdi51">
+          <text>totalCreditScore</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1rbbt1f">
+          <text>collateral</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_14db4jk">
+          <text>"For Review"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_10uwb6y">
+        <inputEntry id="UnaryTests_07y3ia4">
+          <text>"OFW Loan"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0r5cscm">
+          <text>&lt; 50000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10k525o">
+          <text>30000</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1k4zqkp">
+          <text>36</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_13imo13">
+          <text>totalCreditScore</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1x9b1wp">
+          <text>collateral</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0x99k07">
+          <text>"For Review"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="PersonalInformation" name="Personal Information" camunda:historyTimeToLive="1">
+    <decisionTable id="DecisionTable_0tyyvej">
+      <input id="InputClause_02ws7b0" label="Full Name">
+        <inputExpression id="LiteralExpression_0k18nou" typeRef="string">
+          <text>fullName</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1vmxguc" label="Phone Number">
+        <inputExpression id="LiteralExpression_0t4rzhc" typeRef="string">
+          <text>phoneNumber</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0pu6u0a" label="Email Address">
+        <inputExpression id="LiteralExpression_1iz6vbs" typeRef="string">
+          <text>emailAddress</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0wn1jej" label="Telephone Number" biodi:width="192">
+        <inputExpression id="LiteralExpression_11u5u13" typeRef="string">
+          <text>telephoneNumber</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_0kzrvfe" label="Total Credit Score" name="totalCreditScore" typeRef="integer" />
+      <rule id="DecisionRule_12xktxb">
+        <inputEntry id="UnaryTests_1gzgoy8">
+          <text>is defined(FullName)</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_19l607x">
+          <text>is defined(PhoneNumber)</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03qh4l8">
+          <text>is defined(EmailAddress)</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1oos2fr">
+          <text>is defined(TelephoneNumber)</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_08hoqjq">
+          <text>100</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0sfpyat">
+        <inputEntry id="UnaryTests_15uwo5a">
+          <text>null</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ddodgu">
+          <text>is defined(PhoneNumber)</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1uqtu5f">
+          <text>is defined(EmailAddress)</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0lw46ez">
+          <text>is defined(TelephoneNumber)</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1l7pg7o">
+          <text>90</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0pnhygr">
+        <inputEntry id="UnaryTests_0bmng59">
+          <text>is defined(FullName)</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_05t9y6o">
+          <text>null</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1cw9p98">
+          <text>null</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_04uz24j">
+          <text>is defined(TelephoneNumber)</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1pajol9">
+          <text>80</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1bi216r">
+        <inputEntry id="UnaryTests_0fjpskf">
+          <text>is defined(FullName)</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0o5ipyf">
+          <text>null</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0c5th3l">
+          <text>null</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1v8f4nl">
+          <text>null</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0oxzdol">
+          <text>70</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="CollateralRequirements" name="Collateral Requirements" camunda:historyTimeToLive="1">
+    <decisionTable id="DecisionTable_1903f56">
+      <input id="InputClause_19jo1xn" label="Loan Type">
+        <inputExpression id="LiteralExpression_0zerx3e" typeRef="string">
+          <text>loanType</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_0qk9w4b" label="Collateral" name="collateral" typeRef="string" />
+      <rule id="DecisionRule_11fzalj">
+        <inputEntry id="UnaryTests_02nbggg">
+          <text>"Housing Loan"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0iab893">
+          <text>"Property"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0eq0i1l">
+        <inputEntry id="UnaryTests_1coitsq">
+          <text>"Business Loan"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ldzg7z">
+          <text>"Business Assets"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0wg6gbv">
+        <inputEntry id="UnaryTests_1o9xe6m">
+          <text>"Auto Loan"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_04faqaa">
+          <text>"Vehicle"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="ApprovalStatus" name="Approval Status" camunda:historyTimeToLive="1">
+    <informationRequirement id="InformationRequirement_1hgwt1f">
+      <requiredDecision href="#LoanOffer" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1uh0wgx">
+      <input id="InputClause_12yn3s6" label="Loan Release">
+        <inputExpression id="LiteralExpression_07x0khm" typeRef="string">
+          <text>loanRelease</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_1gc3o0l" label="Approval Status" name="approvalStatus" typeRef="string" />
+      <rule id="DecisionRule_0gba9lz">
+        <inputEntry id="UnaryTests_15q1hp9">
+          <text>"Accepted"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_01qncfn">
+          <text>"Approved"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1fn3oyn">
+        <inputEntry id="UnaryTests_0uyxr07">
+          <text>"For Review"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_022bgmi">
+          <text>"Under Review"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1l3jkap">
+        <inputEntry id="UnaryTests_01is0p4">
+          <text>"Rejected"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_18vc2hb">
+          <text>"Disapproved"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="LoanOffer">
+        <dc:Bounds height="80" width="180" x="300" y="220" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0gzz3tn" dmnElementRef="InformationRequirement_1llherd">
+        <di:waypoint x="250" y="160" />
+        <di:waypoint x="360" y="200" />
+        <di:waypoint x="360" y="220" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_10plbj5" dmnElementRef="InformationRequirement_0yni3bl">
+        <di:waypoint x="510" y="160" />
+        <di:waypoint x="420" y="200" />
+        <di:waypoint x="420" y="220" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_1b40vsf" dmnElementRef="InformationRequirement_1hgwt1f">
+        <di:waypoint x="390" y="300" />
+        <di:waypoint x="390" y="330" />
+        <di:waypoint x="390" y="350" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_15xrtwx" dmnElementRef="PersonalInformation">
+        <dc:Bounds height="80" width="180" x="160" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0etyafz" dmnElementRef="CollateralRequirements">
+        <dc:Bounds height="80" width="180" x="420" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0529t6a" dmnElementRef="ApprovalStatus">
+        <dc:Bounds height="80" width="180" x="300" y="350" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
